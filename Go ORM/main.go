@@ -11,7 +11,7 @@ import (
 func handleRequest() {
 	rter := mux.NewRouter().StrictSlash(true)
 	rter.HandleFunc("/", helloworld).Methods("GET")
-	rter.HandleFunc("/users", users).Methods("GET")
+	rter.HandleFunc("/users", allusers).Methods("GET")
 	rter.HandleFunc("/user/{name}/{email}", newuser).Methods("POST")
 	rter.HandleFunc("/user/{name}", deleteuser).Methods("DELETE")
 	rter.HandleFunc("/user/{name}/{email}", updateuser).Methods("PUT")
@@ -19,6 +19,7 @@ func handleRequest() {
 }
 func main() {
 	fmt.Println("main func")
+	initmigrate()
 	handleRequest()
 }
 func helloworld(w http.ResponseWriter, r *http.Request) {
